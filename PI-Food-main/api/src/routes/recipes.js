@@ -71,7 +71,7 @@ recipesRouter.get("/:id", async (req, res, next) => {
           summary: apiRecipesById.data.summary,
           //score: apiRecipesById.data.spoonacularScore,
           healthScore: apiRecipesById.data.healthScore,
-          steps: apiRecipesById.data.analyzedInstructios[0]?.steps.map((e) => {
+          steps: apiRecipesById.data.analyzedInstructions[0]?.steps.map((e) => {
             return {
               number: e.number,
               step: e.step,

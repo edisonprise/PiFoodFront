@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getRecipes,
@@ -11,7 +10,7 @@ import Recipe from "./Recipe";
 import { Link } from "react-router-dom";
 import Paged from "./Paged";
 import SearchBar from "./SearchBar";
-import "./home.css";
+import "./css/home.css";
 
 let prevId = 1;
 
@@ -31,7 +30,7 @@ export default function Home() {
     quantityRecipesPage
   );
 
-  const paged = function(pageNumber) {
+  const paged = function (pageNumber) {
     setPage(pageNumber);
   };
 
@@ -137,7 +136,7 @@ export default function Home() {
         {showRecipesPage?.map((e) => {
           return (
             <div className="eachRecipe" key={prevId++}>
-              <Link className="linkRecetas" to={`home/${e.id}`}>
+              <Link className="linkRecetas" to={`detail/${e.id}`}>
                 <Recipe
                   image={
                     e.image

@@ -62,6 +62,7 @@ export function addRecipe(payload) {
 export function getRecipeDetails(payload) {
   return async function (dispatch) {
     try {
+      console.log(payload);
       var response = await axios.get(`${LOCAL_HOST}/recipes/${payload}`);
       return dispatch({ type: GET_RECIPE_DETAILS, payload: response.data });
     } catch (error) {
@@ -75,7 +76,6 @@ export function dietTypeFilter(payload) {
     payload,
   };
 }
-
 
 export function alphabeticalSort(payload) {
   return {

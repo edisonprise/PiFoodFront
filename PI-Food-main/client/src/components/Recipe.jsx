@@ -1,20 +1,23 @@
 import React from "react";
+import './css/recipe.css'
+
+let prevId=1;
 
 export default function Recipe(recipes) {
     const { image, name, dietTypes } = recipes
 
     return (
-      <div>
+      <div className="recipe">
         <div>
-            <img src={image} alt="Not found"/>
+            <img className="recipeImg" src={image} alt="Not found"/>
         </div>
         <div>
-            <h2>{name}</h2>
+            <h2 className="recipeName">{name}</h2>
         </div>
-        <div>
+        <div className="dietcointainer">
             {dietTypes?.map(e =>{
                 return (
-                    <h5>{e}</h5>
+                    <h5 className="diets" key={prevId++}>{e}</h5>
                 )
             })}
         </div>

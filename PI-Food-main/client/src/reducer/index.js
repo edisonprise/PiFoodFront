@@ -78,24 +78,24 @@ function rootReducer(state = intialState, action) {
         ...state,
         recipes: action.payload,
       };
-    
+
     case GET_RECIPE_DETAILS:
       return {
         ...state,
         recipeDetails: action.payload,
       };
-    
+
     case ADD_RECIPE:
       return {
         ...state,
-      }
-    
+      };
+
     case GET_DIET_TYPES:
       return {
         ...state,
-        dietTypes: action.payload
-      }
-    
+        dietTypes: action.payload,
+      };
+
     default:
       return state;
   }
