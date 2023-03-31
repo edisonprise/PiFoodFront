@@ -26,7 +26,6 @@ recipesRouter.get("/", async (req, res, next) => {
             image: e.image,
             name: e.name,
             dietTypes: e.dietTypes ? e.dietTypes : e.diets.map((e) => e.name),
-            //score: e.score,
             id: e.id,
           };
         });
@@ -40,7 +39,6 @@ recipesRouter.get("/", async (req, res, next) => {
           image: e.image,
           name: e.name,
           dietTypes: e.dietTypes ? e.dietTypes : e.diets.map((e) => e.name),
-          //score: e.score,
           id: e.id,
         };
       });
@@ -69,7 +67,6 @@ recipesRouter.get("/:id", async (req, res, next) => {
           name: apiRecipesById.data.name,
           dishTypes: apiRecipesById.data.dishTypes,
           summary: apiRecipesById.data.summary,
-          //score: apiRecipesById.data.spoonacularScore,
           healthScore: apiRecipesById.data.healthScore,
           steps: apiRecipesById.data.analyzedInstructions[0]?.steps.map((e) => {
             return {

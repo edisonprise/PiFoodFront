@@ -2,16 +2,25 @@ const { Router } = require("express");
 const { Recipe, Diet } = require("../db");
 
 const router = Router();
-
+router.delete("/delete/:id", async function (req, res) {
+  let id = req.params.id;
+  let recipesDestroyed = Recipe.destroy({
+    where: {
+      id: id,
+    },
+  });
+  if (recipesDestroyed) {
+    res.status(200).send(true);
+  }
+});
 router.post("/", async (req, res, next) => {
   try {
-    const { name,  image , summary,  /*score,*/  healthScore, steps, dietTypes } =
+    const { name, image, summary, healthScore, steps, dietTypes } =
       req.body;
     const newRecipe = await Recipe.create({
       name,
       image,
       summary,
-      //score,
       healthScore,
       steps,
     });

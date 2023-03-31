@@ -6,13 +6,16 @@ import "./css/addrecipe.css";
 
 function validate(input) {
   const errors = {};
-  if(!input.name) errors.name = 'Please complete with a recipe name';
-  if(!input.summary) errors.summary = 'Please add some coments about your recipe';
-  if(!input.image) errors.image = 'please add an image';
-  //if(!input.score < 1 || input.score > 100) errors.score = 'The score must be a number between 1 and 100';
-  if (input.healthScore < 1 || input.healthScore > 100) errors.healthScore = 'The score must be a number between 1 and 100';
-  if(!input.steps.length) errors.steps = 'Please detail the steps for your recipe';
-  if(!input.dietTypes.length) errors.dietTypes = 'You must select at least one diet type';
+  if (!input.name) errors.name = "Please complete with a recipe name";
+  if (!input.summary)
+    errors.summary = "Please add some coments about your recipe";
+  if (!input.image) errors.image = "please add an image";
+  if (input.healthScore < 1 || input.healthScore > 100)
+    errors.healthScore = "The score must be a number between 1 and 100";
+  if (!input.steps.length)
+    errors.steps = "Please detail the steps for your recipe";
+  if (!input.dietTypes.length)
+    errors.dietTypes = "You must select at least one diet type";
   return errors;
 }
 
@@ -26,7 +29,6 @@ export default function AddRecipe() {
     name: "",
     summary: "",
     image: "",
-    //score: '',
     healthScore: "",
     steps: "",
     dietTypes: [],
@@ -45,8 +47,8 @@ export default function AddRecipe() {
         [e.target.name]: e.target.value,
       };
       const validations = validate(newInput);
-      setErrors(validations)
-      return newInput
+      setErrors(validations);
+      return newInput;
     });
   }
 
@@ -64,7 +66,7 @@ export default function AddRecipe() {
       dietTypes: newArray,
     });
     const validations = validate(input);
-    setErrors(validations)
+    setErrors(validations);
   }
 
   function handleSubmit(e) {
@@ -76,7 +78,6 @@ export default function AddRecipe() {
       input.name === "" &&
       input.summary === "" &&
       input.image === "" &&
-      //input.score === "" &&
       input.healthScore === "" &&
       input.steps === "" &&
       !input.dietTypes.length
@@ -89,10 +90,9 @@ export default function AddRecipe() {
         name: "",
         summary: "",
         image: "",
-        //score: "",
         healthScore: "",
         steps: [],
-        dietTypes: []
+        dietTypes: [],
       });
       history.push("/home");
     }
@@ -113,7 +113,7 @@ export default function AddRecipe() {
                 value={input.name}
                 onChange={(e) => handleChange(e)}
               />
-              {errors.name && (<span className="errors">{errors.name}</span>)}
+              {errors.name && <span className="errors">{errors.name}</span>}
             </div>
             <div className="nameInput">
               <label className="msgs">Summary:</label>
@@ -137,20 +137,8 @@ export default function AddRecipe() {
                 value={input.image}
                 onChange={(e) => handleChange(e)}
               />
-              {errors.image && (
-                <span className="errors">{errors.image}</span>
-              )}
+              {errors.image && <span className="errors">{errors.image}</span>}
             </div>
-            {/* <div className="nameInput">
-              <label className="msgs">Score:</label>
-              <input
-                name="score"
-                type="number"
-                value={input.score}
-                onChange={(e) => handleChange(e)}
-              />
-              {errors.score && <span className="errors">{errors.score}</span>}
-            </div> */}
             <div className="nameInput">
               <label className="msgs">Health Score:</label>
               <input
@@ -173,7 +161,7 @@ export default function AddRecipe() {
                 value={input.steps}
                 onChange={(e) => handleChange(e)}
               />
-              {errors && (<span className="errors">{errors.steps}</span>)}
+              {errors && <span className="errors">{errors.steps}</span>}
             </div>
           </div>
           <div className="checkSelect">

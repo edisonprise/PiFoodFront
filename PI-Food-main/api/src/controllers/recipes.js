@@ -14,7 +14,6 @@ const getApiInfo = async () => {
       name: e.title,
       dietTypes: e.diets,
       summary: e.summary,
-      //score: e.score,
       healthScore: e.healthScore,
       dishTypes: e.dishTypes,
       steps: e.analyzedInstructions[0]?.steps.map((e) => {
@@ -22,18 +21,7 @@ const getApiInfo = async () => {
       }),
     };
   });
-  apiInfo.forEach((el) => {
-    Recipe.findOrCreate({
-      where: {
-        name: el.name,
-        image: el.image,
-        summary: el.summary,
-        //score: el.score,
-        healthScore: el.healthScore,
-        steps: el.steps != undefined ? el.steps : [],
-      },
-    });
-  });
+  
   return apiInfo;
 };
 
