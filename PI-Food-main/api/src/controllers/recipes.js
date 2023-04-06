@@ -5,23 +5,32 @@ const { API_KEY, API_KEY1 } = process.env;
 
 const getApiInfo = async () => {
   const apiUrl = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY1}&addRecipeInformation=true&number=100`
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
   );
   const apiInfo = await apiUrl.data.results.map((e) => {
     return {
-      id: e.id,
-      image: e.image,
       name: e.title,
-      dietTypes: e.diets,
+      image: e.image,
       summary: e.summary,
       healthScore: e.healthScore,
-      dishTypes: e.dishTypes,
       steps: e.analyzedInstructions[0]?.steps.map((e) => {
         return e.step;
       }),
     };
   });
-  
+apiInfo.forEach((el) => {
+  Recipe.findOrCreate({
+    where: {
+      name: el.name,
+      image: el.image,
+      summary: el.summary,
+      //score: el.score,
+      healthScore: el.healthScore,
+      steps: el.steps != undefined ? el.steps : [],
+    },
+  });
+}); 
+
   return apiInfo;
 };
 
@@ -39,7 +48,7 @@ const getDbInfo = async () => {
 
 const getApiById = async (id) => {
   return await axios.get(
-    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY1}`
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
   );
 };
 const getDbById = async (id) => {
